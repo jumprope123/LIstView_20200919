@@ -8,6 +8,8 @@ import android.widget.ArrayAdapter
 import android.widget.TextView
 import kr.co.tjoeun.listview_20200919.R
 import kr.co.tjoeun.listview_20200919.datas.Student
+import java.util.*
+import kotlin.collections.ArrayList
 
 class StudentAdapter(
     val mContext: Context,
@@ -32,8 +34,12 @@ class StudentAdapter(
         stuendtId.text = student.name
         studentAdress.text = student.address
 
+//        2020이 고정되면 => 해가 바뀌면 나이가 틀린 데이터.
+//        2020을 현재 년도로 ? 지금 시간 기준
 
-        val koreanAge = 2020 - student.birthYear +1
+        val now = Calendar.getInstance() // 현재 일시가 now에 기록됨
+
+        val koreanAge = now.get(Calendar.YEAR) - student.birthYear +1
 
         studentAge.text = "(${koreanAge}세)"
 
