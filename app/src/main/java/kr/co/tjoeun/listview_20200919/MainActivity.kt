@@ -29,6 +29,9 @@ class MainActivity : AppCompatActivity() {
         mStudentList.add(Student("최성호","경기도 부천시",1979))
         mStudentList.add(Student("주지현","서울시 송파구",1993))
 
+
+        mStudentList.removeAt(0)
+
         mAdapter = StudentAdapter(this, R.layout.student_list_item, mStudentList)
         studentListView.adapter = mAdapter
 
@@ -38,9 +41,12 @@ class MainActivity : AppCompatActivity() {
         }
 
         studentListView.setOnItemLongClickListener { parent, view, position, id ->
-            val LongClickedStudent = mStudentList[position]
-            Toast.makeText(this, "${LongClickedStudent.name} 길게눌림",Toast.LENGTH_SHORT).show()
+//            val LongClickedStudent = mStudentList[position]
+
+            mStudentList.removeAt(position)
+            mAdapter.notifyDataSetChanged()
             return@setOnItemLongClickListener true
+
         }
 
         }
